@@ -8,7 +8,7 @@
     Call the array 'myArr'.
 */
 
-//CODE HERE
+const myArr = [4,'abc',['cat','dog','bird'],77]
 
 
 ////////////////////PROBLEM 2////////////////////
@@ -20,7 +20,7 @@
 
 const nestedLetters = ['m', 'g', 'e', 'q', 'h', ['n', 'b', ['v', 'z', 'y', 'r']], 'a']
 
-//CODE HERE
+const foundZ = nestedLetters[5][2][1]
 
 
 ////////////////////PROBLEM 3////////////////////
@@ -36,7 +36,7 @@ const savannah = ['lion', 'zebra', 'lion', 'giraffe']
 const desert = ['rattlesnake', 'coyote']
 //DO NOT EDIT CODE ABOVE
 
-//CODE HERE
+let animals = [...forest,...ocean,...savannah,...desert];
 
 
 /*
@@ -44,7 +44,7 @@ const desert = ['rattlesnake', 'coyote']
     Call the new array 'animalsCopy' and add 'elephant' onto the end of the array.
 */
 
-//CODE HERE
+const animalsCopy = [...animals,'elephant']
 
 
 ////////////////////PROBLEM 4////////////////////
@@ -55,9 +55,15 @@ const desert = ['rattlesnake', 'coyote']
     If the numbers are the same, just return the number.
 */
 
-//CODE HERE
+let compareNums = (num1,num2) => {
+    if(num1>num2){
+        return num1
+    }else if (num1===num2){
+        return num1
+    }
+}
 
-  
+
 ////////////////////PROBLEM 5////////////////////
 /*
     Write a one line arrow function called 'bestMovie' that takes in one parameter,
@@ -67,28 +73,28 @@ const desert = ['rattlesnake', 'coyote']
     we would expect the function to return 'Sharknado is the best movie ever!'
 */
 
-//CODE HERE
-  
-  
+const bestMovie = (movie) => `${movie} is the best movie ever!`
+
+
 ////////////////////PROBLEM 6////////////////////
 /*
     Write an arrow function called 'jsNinja' that returns the string: 'I am a JavaScript ninja!'
 */
 
-//CODE HERE
-  
+const jsNinja = () => 'I am a JavaScript ninja!';
+
 
 ////////////////////PROBLEM 7////////////////////
 
 //DO NOT EDIT CODE BELOW
-  const gameInfo = {
+const gameInfo = {
     name: 'Splendor', 
     desc: 'Renaissance merchants race to grab gems, acquire property, and please nobility.', 
     players: [2,3,4],
     playingTime: 30,
     minAge: 10,
     rating: 1
-  }
+}
 //DO NOT EDIT CODE ABOVE
 
 /*
@@ -96,13 +102,14 @@ const desert = ['rattlesnake', 'coyote']
     delete the rating property off of the gameInfo object.
 */
 
-//CODE HERE
-  
+delete gameInfo.rating
+
+
 
 ////////////////////PROBLEM 8////////////////////
 
 //DO NOT EDIT CODE BELOW
-  const shapes = {
+const shapes = {
     triangle: 3,
     square: 4, 
     rectangle: 4,
@@ -110,17 +117,22 @@ const desert = ['rattlesnake', 'coyote']
     hexagon: 6, 
     septagon: 7,
     octagon: 8
-  }
+}
 //DO NOT EDIT CODE ABOVE
-  
+
 /*
     You only like even numbers, so get rid of the other shapes by
     looping over the shapes object and deleting any property whose value is odd number.
 */
+function oddNumbers(){
+    for(let key in shapes){
+        if(shapes[key] % 2 !== 0){
+        delete shapes[key]
+        }
+    }
+}
+oddNumbers()
 
-//CODE HERE
-  
-  
 ////////////////////PROBLEM 9////////////////////
 
 //DO NOT EDIT CODE BELOW
@@ -160,9 +172,13 @@ const classes = [
     all online classes with no homework.
 */
 
-//CODE HERE
+for(let i=0;i<classes.length; i++){
+  for(let key in classes){
+    classes[i].inPerson = false
+    classes[i].homework = false
+    }
+  }
 
-  
 ////////////////////PROBLEM 10////////////////////
 /*
     Use nested for loops to compare the letters in the lettersToPair array below.
@@ -176,7 +192,13 @@ const lettersToPair = ['e', 'k', 's', 'a', 'e', 's', 'a', 'n', 'k', 'n']
 let pairsArray = []
 //DO NOT EDIT CODE ABOVE
 
-//CODE HERE
+for (let i=0; i<lettersToPair.length;i++){
+    for (let m = i + 1; m<lettersToPair.length;m++){
+        if(lettersToPair[i] === lettersToPair[m]){
+            pairsArray.push([i,m])
+        }
+    }
+}
 
     
 
@@ -193,7 +215,13 @@ let pairsArray = []
     Those values should come from the functions parameters: name, age, breed, tricks (in order).
 */
 
-//CODE HERE
+function Dog (name,age,breed,tricks){
+this.name=name;
+this.age=age;
+this.breed=breed;
+this.tricks=tricks; 
+}
+
 
 
 /*
@@ -202,8 +230,8 @@ let pairsArray = []
     Store the result in a variable called 'fido'.
 */
 
-//CODE HERE
-  
+const fido = new Dog('Fido',3,'Jack Russell',['sit','shake'])
+
 
 ////////////////////PROBLEM 12////////////////////
 /*
@@ -212,7 +240,10 @@ let pairsArray = []
     NAME will come from that context, so you should reference 'this.name' to get the correct name.
 */
 
-//CODE HERE
+function bark(){
+    return `${this.name} says bark!`
+}
+
 
 
 /*
@@ -220,9 +251,9 @@ let pairsArray = []
     and saving the result to a variable called fidoSpeak.
 */
 
-//CODE HERE
-  
-  
+let fidoSpeak = bark.call(fido) 
+
+
 ////////////////////PROBLEM 13////////////////////
 /*
     Write a function called 'teachTrick' that will take in one parameter, trick, 
@@ -231,7 +262,10 @@ let pairsArray = []
     Tricks will come from that context, so you should reference 'this.tricks' to access the correct array.
 */
 
-//CODE HERE
+function teachTrick(trick){
+    this.tricks.push(trick)
+        return this.tricks
+}
 
 
 /*
@@ -239,7 +273,7 @@ let pairsArray = []
     Save the result to a variable called 'teachStay'.
 */
 
-//CODE HERE
+let teachStay = teachTrick.bind(fido,'stay') 
   
   
 ////////////////////PROBLEM 14////////////////////
@@ -250,7 +284,9 @@ let pairsArray = []
     Remember to use the 'this' keyword to access values from the context that you will apply.
 */
 
-//CODE HERE
+function dogIntro(treat,toy){
+    return `${this.name} is a ${this.breed} that loves ${treat} and their ${toy}!`
+}
 
 
 /*
@@ -259,8 +295,8 @@ let pairsArray = []
     and save the result to a variable called fidoIntro.
 */
 
-//CODE HERE
-  
+let fidoIntro = dogIntro.apply(fido,['chicken','tennis ball']);
+
 
 ////////////////////PROBLEM 15////////////////////
 /*
@@ -269,9 +305,15 @@ let pairsArray = []
     Those values should come from the function's parameters: brand, model, storage, color, sold (in order).
 */
 
-//CODE HERE
+function Phone(brand,model,storage,color,sold){
+    this.brand = brand;
+    this.model = model;
+    this.storage = storage;
+    this.color = color;
+    this.sold = sold;
+}
 
-  
+
 /*
     Next make three new phones using your constructor function.
     Save them to the variables below (make sure you uncomment them).
@@ -284,11 +326,11 @@ let pairsArray = []
 */
 
 //CODE HERE
-  // let phone1 = 
+  let phone1 = new Phone('Iphone','Pro',256,'yellow',false);
   
-  // let phone2 = 
+  let phone2 = new Phone('Android','Samsung',64,'black',false);
   
-  // let phone3 = 
+  let phone3 = new Phone('Iphone','Pro',144,'blue',false);
   
 /*
     Last, add a prototype method to Phone.
@@ -298,6 +340,8 @@ let pairsArray = []
     Don't forget about the context of BRAND and MODEL.
 */
 
-//CODE HERE
+Phone.prototype.sell = function(){
+    this.sold = true
+        return `${this.brand} ${this.model} has been sold.`
+}
 
-  
